@@ -15,4 +15,4 @@ jobs:
             python-version: '3.8'
 
         - name: Execute Python File
-          run: python myprogram.py
+          run: python my_program.py
