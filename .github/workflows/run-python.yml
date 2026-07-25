@@ -1,18 +1,25 @@
-name: Run python Script
+name: Create Deployment Pull Request
+
 on:
    workflow_dispatch:
 
 jobs:
-   run-code:
-     runs-on: ubuntu-latest
-     steps:
-        - name: Checkout code
-          uses: actions/checkout@v4
+   create-pr:
+      runs-on: ubuntu-latest
+      steps:
+         - name: Checkout Code
+           uses: actions/checkout@v4
+           with:
+              fetch-depth: 0
 
-        - name: Set up Python
-          uses: actions/setup-python@v5
-          with:
-            python-version: '3.8'
-
-        - name: Execute Python File
-          run: python my_program.py
+         - name: Create Pull Request Dynamically
+           env:
+              GH_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+           run: |
+              #Automatically select the branch
+              gh pr create \
+                 --base main \
+                 --head "${{ github.ref_name}}" \
+                 --title "Deploy ${{ github.ref_name}} to main" \
+                 --body "This Pull reuest was automatically created by GHA from the current branch."
+              
