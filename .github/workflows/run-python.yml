@@ -16,7 +16,7 @@ jobs:
            uses: actions/upload-artifact@v4
            with:
               name: Main_Branch_Local_Backup
-              path:
+              path: .
 
          - name: Create Pull Request and Print URL
            env:
