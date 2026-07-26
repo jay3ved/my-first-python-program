@@ -13,4 +13,4 @@ jobs:
            
          - name: Run Script Inside Docker Python Image
            run: |
-              docker run --rm -v ${{github.workspace}}:/app -w /app python:3.10-sim python my_program.py
+              docker run --rm -v ${{github.workspace}}:/app -w /app python:3.10-slim python my_program.py
